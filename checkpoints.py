@@ -129,7 +129,7 @@ def generate_mt_worker(checkpoint_path, checkpoints, checkpoint_timediff):
                 checkpoints[ci.path]['history'][ci.history_pos]['root_hash'] = \
                     root_hash_str
                 checkpoints[ci.path]['history'][ci.history_pos]['proofs'] = \
-                    [binascii.hexlify(k) for k in proofs[i]]
+                    [binascii.hexlify(k).decode() for k in proofs[i]]
             # Maintain the set of root hashes.
             if 'roots' not in checkpoints:
                 checkpoints['roots'] = set()

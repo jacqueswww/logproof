@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sha3
 import math
+import binascii
 
 from checkpoints import load_checkpoints
 from mtree import validate_proof
@@ -36,7 +37,11 @@ for path, details in checkpoints.items():
 
             # Merkle tree proof check.
             if state == 'ok' and checkpoint['proofs']:
-                check = validate_proof(checkpoint['proofs'], checkpoint['root_hash'], checkpoint['hash'])
+                check = validate_proof(
+                    [binascii.unhexlify(h) for h in checkpoint['proofs']],
+                    binascii.unhexlify(checkpoint['root_hash']),
+                    binascii.unhexlify(checkpoint['hash'])
+                )
                 if not check:
                     state = 'nok - mt fail'
 
