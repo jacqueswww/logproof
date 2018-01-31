@@ -1,2 +1,3 @@
 ethereum==2.3.0
+https://github.com/ethereum/vyper/archive/master.zip
 
